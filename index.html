@@ -8,12 +8,24 @@
 </head>
 <body>
     <div class="container">
-        <h1>お菓子抽選アプリ</h1>
+        <h1>お菓子<br>抽選アプリ</h1>
         <button id="draw-button">抽選</button>
+        <button id="settings-button" class="settings-button">設定変更</button>
         <div class="result-area">
             <h2>結果</h2>
             <div id="drum-roll-container" class="drum-roll"></div>
             <ul id="winner-list"></ul>
+        </div>
+
+        <!-- Settings Modal -->
+        <div id="settings-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h2>抽選内容の設定</h2>
+                <label for="lottery-items-input">抽選項目 (カンマ区切り):</label>
+                <textarea id="lottery-items-input" rows="5"></textarea>
+                <button id="save-settings-button">保存</button>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>

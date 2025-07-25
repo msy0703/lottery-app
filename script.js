@@ -1,8 +1,16 @@
 const drawButton = document.getElementById('draw-button');
 const winnerList = document.getElementById('winner-list');
 const drumRollContainer = document.getElementById('drum-roll-container');
+const settingsButton = document.getElementById('settings-button');
+const settingsModal = document.getElementById('settings-modal');
+const closeButton = settingsModal.querySelector('.close-button');
+const lotteryItemsInput = document.getElementById('lottery-items-input');
+const saveSettingsButton = document.getElementById('save-settings-button');
 
-const lotteryItems = ["🍭2コ", "🍬3コ", "🍫4コ", "✨もう１回"];
+let lotteryItems = JSON.parse(localStorage.getItem('lotteryItems')) || ["🍭2コ", "🍬3コ", "🍫4コ", "✨もう１回"];
+
+// Initialize input with current lottery items
+lotteryItemsInput.value = lotteryItems.join(', ');
 
 drawButton.addEventListener('click', () => {
     // Reset previous results
@@ -40,4 +48,33 @@ drawButton.addEventListener('click', () => {
         }, 1000); // Re-enable after 1 second
 
     }, 3000); // Drum roll for 3 seconds
+});
+
+// Settings Modal Logic
+settingsButton.addEventListener('click', () => {
+    lotteryItemsInput.value = lotteryItems.join(', '); // Load current items into textarea
+    settingsModal.style.display = 'flex'; // Show modal
+});
+
+closeButton.addEventListener('click', () => {
+    settingsModal.style.display = 'none'; // Hide modal
+});
+
+saveSettingsButton.addEventListener('click', () => {
+    const newItems = lotteryItemsInput.value.split(',').map(item => item.trim()).filter(item => item !== '');
+    if (newItems.length > 0) {
+        lotteryItems = newItems;
+        localStorage.setItem('lotteryItems', JSON.stringify(lotteryItems)); // Save to local storage
+        alert('抽選内容が保存されました！');
+        settingsModal.style.display = 'none'; // Hide modal
+    } else {
+        alert('抽選項目を1つ以上入力してください。');
+    }
+});
+
+// Close modal when clicking outside of it
+window.addEventListener('click', (event) => {
+    if (event.target == settingsModal) {
+        settingsModal.style.display = 'none';
+    }
 });
