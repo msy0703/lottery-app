@@ -1,5 +1,4 @@
 const drawButton = document.getElementById('draw-button');
-const winnerList = document.getElementById('winner-list');
 const drumRollContainer = document.getElementById('drum-roll-container');
 const settingsButton = document.getElementById('settings-button');
 const settingsModal = document.getElementById('settings-modal');
@@ -14,7 +13,6 @@ lotteryItemsInput.value = lotteryItems.join(', ');
 
 drawButton.addEventListener('click', () => {
     // Reset previous results
-    winnerList.innerHTML = '';
     drumRollContainer.textContent = '';
     drawButton.disabled = true;
 
@@ -27,25 +25,21 @@ drawButton.addEventListener('click', () => {
     // Stop the drum roll and show the winner
     setTimeout(() => {
         clearInterval(drumRollInterval);
-        drumRollContainer.textContent = ''; // Clear the drum roll text
+        // drumRollContainer.textContent = ''; // Clear the drum roll text (no need to clear, just replace)
 
         // Select one winner
         const randomIndex = Math.floor(Math.random() * lotteryItems.length);
         const winner = lotteryItems[randomIndex];
 
-        // Display the winner
-        const li = document.createElement('li');
-        li.textContent = `🎉 ${winner} 🎉`;
-        winnerList.appendChild(li);
-        // Trigger the CSS transition
-        setTimeout(() => {
-            li.classList.add('visible');
-        }, 50);
+        // Display the winner directly in drumRollContainer
+        drumRollContainer.textContent = `🎉 ${winner} 🎉`;
+        drumRollContainer.classList.add('result-visible'); // Add class for result animation
 
         // Re-enable the button after the winner is displayed
         setTimeout(() => {
             drawButton.disabled = false;
-        }, 1000); // Re-enable after 1 second
+            drumRollContainer.classList.remove('result-visible'); // Remove class after animation
+        }, 1500); // Re-enable after 1.5 seconds (slightly longer for result visibility)
 
     }, 3000); // Drum roll for 3 seconds
 });

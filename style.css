@@ -79,14 +79,6 @@ button:disabled {
     margin-top: 2.5rem;
 }
 
-h2 {
-    color: #5cb85c; /* Greenish color */
-    border-bottom: 2px solid #d4edda; /* Lighter border */
-    padding-bottom: 0.75rem;
-    font-size: 1.8rem; /* Larger font */
-    margin-bottom: 1.5rem;
-}
-
 .drum-roll {
     font-size: 3.5rem; /* Much larger font */
     font-weight: bold;
@@ -100,31 +92,14 @@ h2 {
     margin-bottom: 1.5rem;
     background-color: #fffacd; /* Light yellow background */
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); /* Inner shadow */
+    transition: all 0.5s ease-out; /* Smooth transition for result display */
 }
 
-#winner-list {
-    list-style: none;
-    padding: 0;
-}
-
-#winner-list li {
-    background-color: #d4edda; /* Light green background */
-    padding: 1rem; /* More padding */
-    border-radius: 10px; /* More rounded */
-    margin-bottom: 0.75rem;
-    color: #155724; /* Dark green text */
-    font-weight: bold;
-    text-align: center;
-    font-size: 2rem; /* Larger font */
-    opacity: 0;
-    transform: translateY(30px) scale(0.9); /* More pronounced animation */
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Smoother transition */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-}
-
-#winner-list li.visible {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+.drum-roll.result-visible {
+    transform: scale(1.1); /* Slightly enlarge when result is visible */
+    color: #155724; /* Change color for result */
+    background-color: #d4edda; /* Change background for result */
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5); /* Green glow for result */
 }
 
 .settings-button {
