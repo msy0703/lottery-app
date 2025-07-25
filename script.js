@@ -2,7 +2,7 @@ const drawButton = document.getElementById('draw-button');
 const winnerList = document.getElementById('winner-list');
 const drumRollContainer = document.getElementById('drum-roll-container');
 
-const lotteryItems = ["2コ", "３コ", "４コ", "もう１回"];
+const lotteryItems = ["🍭2コ", "🍬3コ", "🍫4コ", "✨もう１回"];
 
 drawButton.addEventListener('click', () => {
     // Reset previous results
